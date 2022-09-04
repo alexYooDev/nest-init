@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # nest-init
 repo for learning about nest.js and how to build enterprise level api structure w/ unit testing
 =======
@@ -75,4 +74,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
->>>>>>> 0b1333e (init project)
+
