@@ -8,24 +8,28 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { Movie } from './entities/movie.entity';
+import { MoviesService } from './movies.service';
 
 /**Controllers
  * What controllers do : takes urls and executes function
  */
 @Controller('movies')
 export class MoviesController {
-  @Get('search')
-  search(@Query('year') searchYear: string) {
-    return `We are searching for a movie made after: ${searchYear}`;
-  }
+  constructor(private readonly moviesService: MoviesService) {}
+
+  // @Get('search')
+  // search(@Query('year') searchYear: string) {
+  //   return `We are searching for a movie made after: ${searchYear}`;
+  // }
 
   /** returns all the movies
    * @returns {Array} : array that contains movies object
    */
 
   @Get()
-  getAll() {
-    return 'This will return all movies';
+  getAll(): Movie[] {
+    return this.moviesService.getAll();
   }
 
   /** returns one of the movies
@@ -33,16 +37,16 @@ export class MoviesController {
    * @returns {object} : movie object
    */
   @Get('/:id')
-  getOne(@Param('id') id: string) {
-    return `This will return one of the movies with id: ${id}`;
+  getOne(@Param('id') id: string): Movie {
+    return this.moviesService.getOne(id);
   }
 
   /**
    * add a movie object to the movies array
    */
   @Post()
-  create(@Body() movieData: JSON) {
-    return movieData;
+  createOne(@Body() movieData: object) {
+    return this.moviesService.createOne(movieData);
   }
 
   /**
@@ -50,8 +54,8 @@ export class MoviesController {
    * @param {id} : movie id
    */
   @Delete('/:id')
-  delete(@Param('id') id: string) {
-    return `This will delete a movie with id : ${id}`;
+  deleteOne(@Param('id') id: string) {
+    return this.moviesService.deleteOne(id);
   }
 
   /** Updates one movie object
