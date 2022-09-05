@@ -7,15 +7,12 @@
 logs
 *.log
 npm-debug.log*
-<<<<<<< HEAD
-=======
 pnpm-debug.log*
 >>>>>>> 0b1333e (init project)
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-<<<<<<< HEAD
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 

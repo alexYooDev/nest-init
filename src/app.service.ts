@@ -1,8 +1,3 @@
-import { Injectable } from '@nestjs/common';
-
-@Injectable()
-export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
-}
+/**Service
+ * What Service does: implements actual business logic and communicates with DB
+ */
