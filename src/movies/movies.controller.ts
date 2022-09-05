@@ -8,6 +8,8 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { CreateMovieDTO } from './dto/create-movie.dto';
+import { UpdateMovieDTO } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 import { MoviesService } from './movies.service';
 
@@ -37,7 +39,7 @@ export class MoviesController {
    * @returns {object} : movie object
    */
   @Get('/:id')
-  getOne(@Param('id') id: string): Movie {
+  getOne(@Param('id') id: number): Movie {
     return this.moviesService.getOne(id);
   }
 
@@ -45,7 +47,7 @@ export class MoviesController {
    * add a movie object to the movies array
    */
   @Post()
-  createOne(@Body() movieData: object) {
+  createOne(@Body() movieData: CreateMovieDTO) {
     return this.moviesService.createOne(movieData);
   }
 
@@ -54,7 +56,7 @@ export class MoviesController {
    * @param {id} : movie id
    */
   @Delete('/:id')
-  deleteOne(@Param('id') id: string) {
+  deleteOne(@Param('id') id: number) {
     return this.moviesService.deleteOne(id);
   }
 
@@ -62,7 +64,7 @@ export class MoviesController {
    * @param {id} : movie id
    */
   @Patch('/:id')
-  update(@Param('id') id: string, @Body() updateData: object) {
+  update(@Param('id') id: number, @Body() updateData: UpdateMovieDTO) {
     return this.moviesService.updateOne(id, updateData);
   }
 }
