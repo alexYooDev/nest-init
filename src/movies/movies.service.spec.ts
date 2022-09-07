@@ -70,4 +70,46 @@ describe('MoviesService', () => {
       }
     });
   });
+  describe('createOne', () => {
+    it('should create one Movie object in the movies array', () => {
+      service.createOne({
+        title: 'test',
+        year: 2022,
+        genres: ['test'],
+      });
+      const createdMovie = service.getOne(1);
+      expect(createdMovie).toBeDefined();
+      expect(createdMovie.title).toEqual('test');
+      expect(createdMovie.year).toEqual(2022);
+      expect(createdMovie.genres).toContain('test');
+    });
+    it('should return a 404 error', () => {
+      try {
+        service.getOne(999);
+      } catch (error) {
+        expect(error).toBeInstanceOf(NotFoundException);
+      }
+    });
+  });
+
+  describe('updateOne', () => {
+    it('should update one specified movie object in the array', () => {
+      service.createOne({
+        title: 'test',
+        year: 2022,
+        genres: ['test'],
+      });
+      service.updateOne(1, { title: 'test movie' });
+
+      const updatedMovie = service.getOne(1);
+      expect(updatedMovie.title).toEqual('test movie');
+    });
+    it('should throw a 404 error', () => {
+      try {
+        service.updateOne(999, { title: 'new title' });
+      } catch (error) {
+        expect(error).toBeInstanceOf(NotFoundException);
+      }
+    });
+  });
 });
